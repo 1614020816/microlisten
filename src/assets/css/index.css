@@ -667,7 +667,7 @@ body{
 }
 .n-enter li,.n-enter .itm{
 	float: left;
-	width: 210px;
+	/* width: 210px; */
 	height: 62px;
 	background: #fafafa;
 }

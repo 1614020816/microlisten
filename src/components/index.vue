@@ -379,6 +379,7 @@ import {getAjax} from './../util/ajax'
         var url = "http://localhost:3000/top/list?idx=3";
         this.$http.get(url).then(function(data){
             var obj = data.body.result.tracks;
+            console.log(obj)
             for(var i = 0;i<10;i++){
             	this.soarings.push(obj[i]);
             }

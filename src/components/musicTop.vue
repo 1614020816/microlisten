@@ -4,7 +4,24 @@
             <div class="n-minelst n-minelst-2">
                 <h2 class="f-ff1">云音乐特色榜</h2>
                 <ul class="f-cb">
-                    <li class="mine z-selected" data-res-id = 'id' data-res-action="href" v-for="list in features">
+                    <li v-for="list in features" :class="list.index == topList ? 'mine z-selected' : 'mine'" data-res-id = 'id' @click="loadTopList(list.index,list.id)" >
+                        <div class="item f-cb">
+                            <div class="left">
+                                <a href="#" class="avatar">
+                                    <img :src="list.imgUrl" :alt="list.name"/>
+                                    <span class="msk"></span>
+                                </a>
+                            </div>
+                            <p class="name">
+                                <a href="#" class="s-fc0">{{list.name}}</a>
+                            </p>
+                            <p class="s-fc4">{{list.updateTime}}</p>
+                        </div>
+                    </li>                    
+                </ul>
+                <h2 class="scd f-ff1">全球媒体榜</h2>
+                <ul class="f-cb">
+                    <li v-for="list in global" :class="list.index == topList ? 'mine z-selected' : 'mine'" data-res-id = 'id' @click="loadTopList(list.index,list.id)" >
                         <div class="item f-cb">
                             <div class="left">
                                 <a href="#" class="avatar">
@@ -18,261 +35,6 @@
                             <p class="s-fc4">{{list.updateTime}}</p>
                         </div>
                     </li>
-                    <!-- <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/new.jpg" alt="云音乐新歌榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">云音乐新歌榜</a>
-                            </p>
-                            <p class="s-fc4">每天更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/yuan.jpg" alt="网易原创歌曲榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">网易原创歌曲榜</a>
-                            </p>
-                            <p class="s-fc4">每周四更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/hot.jpg" alt="云音乐热歌榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">云音乐热歌榜</a>
-                            </p>
-                            <p class="s-fc4">每周四更新</p>
-                        </div>
-                    </li> -->
-                </ul>
-                <h2 class="scd f-ff1">全球媒体榜</h2>
-                <ul class="f-cb">
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/ACG.jpg" alt="云音乐ACG音乐榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">云音乐ACG音乐榜</a>
-                            </p>
-                            <p class="s-fc4">每周四更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/eleyin.jpg" alt="云音乐电音榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">云音乐电音榜</a>
-                            </p>
-                            <p class="s-fc4">每周五更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/beatport.jpg" alt="Beatport全球电子舞曲榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">Beatport全球电子舞曲榜</a>
-                            </p>
-                            <p class="s-fc4">每周四更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/Japen.jpg" alt="日本Oricon周榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">日本Oricon周榜</a>
-                            </p>
-                            <p class="s-fc4">每周四更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/gudian.jpg" alt="云音乐古典音乐榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">云音乐古典音乐榜</a>
-                            </p>
-                            <p class="s-fc4">每天更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/UK.jpg" alt="UK排行榜周榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">UK排行榜周榜</a>
-                            </p>
-                            <p class="s-fc4">每周一更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/bill.jpg" alt="美国Billboard周榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">美国Billboard周榜</a>
-                            </p>
-                            <p class="s-fc4">每周三更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/NRG.jpg" alt="法国NRJ Vos Hits 周榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">法国NRJ Vos Hits 周榜</a>
-                            </p>
-                            <p class="s-fc4">每周五更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/iTunes.jpg" alt="iTunes榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">iTunes榜</a>
-                            </p>
-                            <p class="s-fc4">每周一更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/Hit FM.jpg" alt="Hit FM Top榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">Hit FM Top榜</a>
-                            </p>
-                            <p class="s-fc4">每周一更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/KTV.jpg" alt="KTV唛榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">KTV唛榜</a>
-                            </p>
-                            <p class="s-fc4">每周五更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/gangao.jpg" alt="中国TOP排行榜(港台榜)"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">中国TOP排行榜(港台榜)</a>
-                            </p>
-                            <p class="s-fc4">每周一更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/neidi.jpg" alt="中国TOP排行榜(内地榜)"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">中国TOP排行榜(内地榜)</a>
-                            </p>
-                            <p class="s-fc4">每周一更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/xianggang.jpg" alt="香港电台中文歌曲龙虎榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">香港电台中文歌曲龙虎榜</a>
-                            </p>
-                            <p class="s-fc4">每周五更新</p>
-                        </div>
-                    </li>
-                    <li class="mine" data-res-id = 'id' data-res-action="href">
-                        <div class="item f-cb">
-                            <div class="left">
-                                <a href="#" class="avatar">
-                                    <img src="../assets/img/musicTop/xianggang.jpg" alt="中国嘻哈榜"/>
-                                    <span class="msk"></span>
-                                </a>
-                            </div>
-                            <p class="name">
-                                <a href="#" class="s-fc0">中国嘻哈榜</a>
-                            </p>
-                            <p class="s-fc4">每周五更新</p>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -281,17 +43,17 @@
                 <div class="g-wrap">
                     <div class="m-info m-info-rank f-cb">
                         <div class="cover u-cover u-cover-rank">
-                            <img src="../assets/img/musicTop/3.1.jpg"/>
+                            <img :src="lists.coverImgUrl"/>
                             <span class="msk1"></span>
                         </div>
                         <div class="cnt">
                             <div class="cntc m-info">
                                 <div class="hd f-cb">
-                                    <h2 class="f-ff2">云音乐飙升榜</h2>
+                                    <h2 class="f-ff2">{{lists.name}}</h2>
                                 </div>
                                 <div class="user f-cb">
                                     <i class="u-icn u-icn-57"></i>
-                                    <span class="sep s-fc3">最近更新：10月26日</span>
+                                    <span class="sep s-fc3">最近更新：{{lists.updateTime}}</span>
                                     <span class="s-fc4">（每周四更新）</span>
                                 </div>
                                 <div class="btns f-cb">
@@ -303,17 +65,17 @@
                                     </a>
                                     <a href="javascript:;" class="u-btni u-btni-add" hidefocus="true" title="添加到播放列表" data-res-type="13" data-res-id="id" data-res-action="addto" data-res-from="31" data-res-data="2222"></a>
                                     <a id="toplist-fav" href="javascript:;" class="u-btni u-btni-fav" hidefocus="true" data-res-type="13" data-res-id="id" data-res-action="fav" data-res-from="31" data-res-data="2222">
-                                        <i>(125535)</i>
+                                        <i>({{lists.subscribedCount}})</i>
                                     </a>
                                     
                                     <a id="toplist-share" href="javascript:;" class="u-btni u-btni-share" hidefocus="true" data-res-type="13" data-res-id="id" data-res-action="share" data-res-name="网易原创歌曲榜" data-res-author="原创君" data-res-data="2222">
-                                        <i>(125535)</i>
+                                        <i>({{lists.shareCount}})</i>
                                     </a>
                                     <a href="javascript:;" class="u-btni u-btni-dl" data-res-type="13" data-res-id="id" data-res-action="download" >
                                         <i>下载</i>
                                     </a>
                                     <a href="javascript:;" class="u-btni u-btni-cmmt j-cmt" data-res-id="id" data-res-action="comment" >
-                                        <i>(<span id="comment-count">5407</span>)</i>
+                                        <i>(<span id="comment-count">{{lists.commentCount}}</span>)</i>
                                     </a>
                                 </div>
                             </div>
@@ -326,12 +88,12 @@
                             <span class="f-ff2">歌曲列表</span>
                         </h3>
                         <span class="sub s-fc3">
-                            <span>98</span>
+                            <span>{{lists.trackCount}}</span>
                             首歌
                         </span>
                         <div class="more s-fc3">
                             播放：
-                            <strong class="s-fc6" id="play-count">1077765</strong>
+                            <strong class="s-fc6" id="play-count">{{lists.playCount}}</strong>
                             次
                         </div>
                     </div>
@@ -360,26 +122,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr id="tr_list1" class="even">
+                                        <tr v-for="(item, index) in listsongs" id="tr_list1"  :class="index%2==0 ? 'even':''">
                                             <td>
                                                 <div class="hd">
-                                                    <span class="num">1</span>
+                                                    <span class="num">{{index+1}}</span>
                                                     <div class="rk">
                                                         <span class="u-icn u-icn-75"></span>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="rank">
+                                            <td :class="index <3 ? 'rank':''">
                                                 <div class="f-cb">
                                                     <div class="tt">
-                                                        <a href="#">
-                                                            <img src="../assets/img/musicTop/list1.jpg" alt="" class="rpic"/>
+                                                        <a v-if="index < 3" href="#">
+                                                            <img  :src="item.album.picUrl" alt="" class="rpic"/>
                                                         </a>
                                                         <span class="ply" data-res-id="516320327" data-res-type="18" data-res-action="play">&nbsp;</span>
                                                         <div class="ttc">
                                                             <span class="txt">
                                                                 <a href="#">
-                                                                    <b title="浅浅">浅浅</b>
+                                                                    <b :title="item.name">{{item.name}}</b>
                                                                 </a>
                                                             </span>
                                                         </div>
@@ -387,7 +149,12 @@
                                                 </div>
                                             </td>
                                             <td class="s-fc3">
-                                                <span class="u-dur">03:37</span>
+                                                <!-- <span class="u-dur">03:37</span> -->
+                                                <span class="u-dur">
+                                                    {{item.lMusic.playTime | getStr}}
+                                                </span>
+
+
                                                 <div class="opt hshow">
                                                     <a href="javascript:;" class="u-icn u-icn-81 icn-add" title="添加到播放列表" hidefocus="true" data-res-type="18" data-res-action="addto"></a>
                                                     <span class="icn icn-fav" title="收藏" data-res-id="516320327" data-res-type="18" data-res-action="fav"></span>
@@ -396,215 +163,9 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="text" title="周深">
-                                                    <span title="周深">
-                                                        <a href="#" hidefocus="true">周深</a>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="tr_list2" class="">
-                                            <td>
-                                                <div class="hd">
-                                                    <span class="num">2</span>
-                                                    <div class="rk">
-                                                        <span class="u-icn u-icn-75"></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="rank">
-                                                <div class="f-cb">
-                                                    <div class="tt">
-                                                        <a href="#">
-                                                            <img src="../assets/img/musicTop/list1.jpg" alt="" class="rpic"/>
-                                                        </a>
-                                                        <span class="ply" data-res-id="516320327" data-res-type="18" data-res-action="play">&nbsp;</span>
-                                                        <div class="ttc">
-                                                            <span class="txt">
-                                                                <a href="#">
-                                                                    <b title="浅浅">浅浅</b>
-                                                                </a>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="s-fc3">
-                                                <span class="u-dur">03:37</span>
-                                                <div class="opt hshow">
-                                                    <a href="javascript:;" class="u-icn u-icn-81 icn-add" title="添加到播放列表" hidefocus="true" data-res-type="18" data-res-action="addto"></a>
-                                                    <span class="icn icn-fav" title="收藏" data-res-id="516320327" data-res-type="18" data-res-action="fav"></span>
-                                                    <span class="icn icn-share" data-res-action="share" title="分享">分享</span>
-                                                    <span class="icn icn-dl" title="下载">下载</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="text" title="周深">
-                                                    <span title="周深">
-                                                        <a href="#" hidefocus="true">周深</a>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="tr_list3" class="even">
-                                            <td>
-                                                <div class="hd">
-                                                    <span class="num">3</span>
-                                                    <div class="rk">
-                                                        <span class="u-icn u-icn-75"></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="rank">
-                                                <div class="f-cb">
-                                                    <div class="tt">
-                                                        <a href="#">
-                                                            <img src="../assets/img/musicTop/list1.jpg" alt="" class="rpic"/>
-                                                        </a>
-                                                        <span class="ply" data-res-id="516320327" data-res-type="18" data-res-action="play">&nbsp;</span>
-                                                        <div class="ttc">
-                                                            <span class="txt">
-                                                                <a href="#">
-                                                                    <b title="浅浅">浅浅</b>
-                                                                </a>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="s-fc3">
-                                                <span class="u-dur">03:37</span>
-                                                <div class="opt hshow">
-                                                    <a href="javascript:;" class="u-icn u-icn-81 icn-add" title="添加到播放列表" hidefocus="true" data-res-type="18" data-res-action="addto"></a>
-                                                    <span class="icn icn-fav" title="收藏" data-res-id="516320327" data-res-type="18" data-res-action="fav"></span>
-                                                    <span class="icn icn-share" data-res-action="share" title="分享">分享</span>
-                                                    <span class="icn icn-dl" title="下载">下载</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="text" title="周深">
-                                                    <span title="周深">
-                                                        <a href="#" hidefocus="true">周深</a>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="tr_list4" class="">
-                                            <td>
-                                                <div class="hd">
-                                                    <span class="num">4</span>
-                                                    <div class="rk">
-                                                        <span class="u-icn u-icn-75"></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="f-cb">
-                                                    <div class="tt">
-                                                        <span class="ply" data-res-id="516320327" data-res-type="18" data-res-action="play">&nbsp;</span>
-                                                        <div class="ttc">
-                                                            <span class="txt">
-                                                                <a href="#">
-                                                                    <b title="浅浅">浅浅</b>
-                                                                </a>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="s-fc3">
-                                                <span class="u-dur">03:37</span>
-                                                <div class="opt hshow">
-                                                    <a href="javascript:;" class="u-icn u-icn-81 icn-add" title="添加到播放列表" hidefocus="true" data-res-type="18" data-res-action="addto"></a>
-                                                    <span class="icn icn-fav" title="收藏" data-res-id="516320327" data-res-type="18" data-res-action="fav"></span>
-                                                    <span class="icn icn-share" data-res-action="share" title="分享">分享</span>
-                                                    <span class="icn icn-dl" title="下载">下载</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="text" title="周深">
-                                                    <span title="周深">
-                                                        <a href="#" hidefocus="true">周深</a>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="tr_list5" class="even">
-                                            <td>
-                                                <div class="hd">
-                                                    <span class="num">5</span>
-                                                    <div class="rk">
-                                                        <span class="u-icn u-icn-75"></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="f-cb">
-                                                    <div class="tt">
-                                                        <span class="ply" data-res-id="516320327" data-res-type="18" data-res-action="play">&nbsp;</span>
-                                                        <div class="ttc">
-                                                            <span class="txt">
-                                                                <a href="#">
-                                                                    <b title="浅浅">浅浅</b>
-                                                                </a>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="s-fc3">
-                                                <span class="u-dur">03:37</span>
-                                                <div class="opt hshow">
-                                                    <a href="javascript:;" class="u-icn u-icn-81 icn-add" title="添加到播放列表" hidefocus="true" data-res-type="18" data-res-action="addto"></a>
-                                                    <span class="icn icn-fav" title="收藏" data-res-id="516320327" data-res-type="18" data-res-action="fav"></span>
-                                                    <span class="icn icn-share" data-res-action="share" title="分享">分享</span>
-                                                    <span class="icn icn-dl" title="下载">下载</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="text" title="周深">
-                                                    <span title="周深">
-                                                        <a href="#" hidefocus="true">周深</a>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="tr_list4" class="">
-                                            <td>
-                                                <div class="hd">
-                                                    <span class="num">1</span>
-                                                    <div class="rk">
-                                                        <span class="u-icn u-icn-75"></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="f-cb">
-                                                    <div class="tt">
-                                                        <span class="ply" data-res-id="516320327" data-res-type="18" data-res-action="play">&nbsp;</span>
-                                                        <div class="ttc">
-                                                            <span class="txt">
-                                                                <a href="#">
-                                                                    <b title="浅浅">浅浅</b>
-                                                                </a>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="s-fc3">
-                                                <span class="u-dur">03:37</span>
-                                                <div class="opt hshow">
-                                                    <a href="javascript:;" class="u-icn u-icn-81 icn-add" title="添加到播放列表" hidefocus="true" data-res-type="18" data-res-action="addto"></a>
-                                                    <span class="icn icn-fav" title="收藏" data-res-id="516320327" data-res-type="18" data-res-action="fav"></span>
-                                                    <span class="icn icn-share" data-res-action="share" title="分享">分享</span>
-                                                    <span class="icn icn-dl" title="下载">下载</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="text" title="周深">
-                                                    <span title="周深">
-                                                        <a href="#" hidefocus="true">周深</a>
+                                                <div class="text" :title="item.artists.name">
+                                                    <span :title="item.artists.name">
+                                                        <a href="#" hidefocus="true">{{item.artists[0].name}}</a>
                                                     </span>
                                                 </div>
                                             </td>
@@ -622,7 +183,7 @@
                                 </h3>
                                 <span class="sub s-fc3">
                                     共
-                                    <span class="j-flag">33315</span>
+                                    <span class="j-flag">{{comments.total}}</span>
                                     条评论
                                 </span>
                             </div>
@@ -652,18 +213,18 @@
                                     </div>
                                 </div>
                                 <div class="cmmts j-flag">
-                                    <h3 class="u-hd4">精彩评论</h3>
-                                    <div id="list1" class="itm">
+                                    <h3 v-if="hotComments.length>0" class="u-hd4">精彩评论</h3>
+                                    <div id="list1" class="itm" v-for="(list,index) in hotComments">
                                         <div class="head">
                                             <a href="#">
-                                                <img src="../assets/img/musicTop/1.jpg"/>
+                                                <img :src="list.user.avatarUrl"/>
                                             </a>
                                         </div>
                                         <div class="cntwrap">
                                             <div>
                                                 <div class="cnt f-brk">
-                                                    <a href="#" class="s-fc7">流年的刻痕Duan</a>
-                                                    ：薛之谦上半年《高尚》1592％，《动物世界》1709％，《暧昧》1798％，网易云音乐飙升纪录，《别》1466％，网易云音乐今年总共三首歌飙升超过1500%，最后强推《我害怕》，歌好听，MV也很好！！！
+                                                    <a href="#" class="s-fc7">{{list.user.nickname}}</a>
+                                                    : {{list.content}}
                                                 </div>
                                             </div>
                                             <div class="rp">
@@ -672,85 +233,7 @@
                                                 </div>
                                                 <a href="javascript:;" data-type="like">
                                                     <i class="zan u-icn2 u-icn2-12"></i>
-                                                    (228)
-                                                </a>
-                                                <span class="sep">|</span>
-                                                <a href="javascript:;" class="s-fc3" data-type="reply">回复</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="list2" class="itm">
-                                        <div class="head">
-                                            <a href="#">
-                                                <img src="../assets/img/musicTop/1.jpg"/>
-                                            </a>
-                                        </div>
-                                        <div class="cntwrap">
-                                            <div>
-                                                <div class="cnt f-brk">
-                                                    <a href="#" class="s-fc7">流年的刻痕Duan</a>
-                                                    ：薛之谦上半年《高尚》1592％，《动物世界》1709％，《暧昧》1798％，网易云音乐飙升纪录，《别》1466％，网易云音乐今年总共三首歌飙升超过1500%，最后强推《我害怕》，歌好听，MV也很好！！！
-                                                </div>
-                                            </div>
-                                            <div class="rp">
-                                                <div class="time s-fc4">
-                                                    昨天11:14
-                                                </div>
-                                                <a href="javascript:;" data-type="like">
-                                                    <i class="zan u-icn2 u-icn2-12"></i>
-                                                    (228)
-                                                </a>
-                                                <span class="sep">|</span>
-                                                <a href="javascript:;" class="s-fc3" data-type="reply">回复</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="list3" class="itm">
-                                        <div class="head">
-                                            <a href="#">
-                                                <img src="../assets/img/musicTop/1.jpg"/>
-                                            </a>
-                                        </div>
-                                        <div class="cntwrap">
-                                            <div>
-                                                <div class="cnt f-brk">
-                                                    <a href="#" class="s-fc7">流年的刻痕Duan</a>
-                                                    ：薛之谦上半年《高尚》1592％，《动物世界》1709％，《暧昧》1798％，网易云音乐飙升纪录，《别》1466％，网易云音乐今年总共三首歌飙升超过1500%，最后强推《我害怕》，歌好听，MV也很好！！！
-                                                </div>
-                                            </div>
-                                            <div class="rp">
-                                                <div class="time s-fc4">
-                                                    昨天11:14
-                                                </div>
-                                                <a href="javascript:;" data-type="like">
-                                                    <i class="zan u-icn2 u-icn2-12"></i>
-                                                    (228)
-                                                </a>
-                                                <span class="sep">|</span>
-                                                <a href="javascript:;" class="s-fc3" data-type="reply">回复</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="list4" class="itm">
-                                        <div class="head">
-                                            <a href="#">
-                                                <img src="../assets/img/musicTop/1.jpg"/>
-                                            </a>
-                                        </div>
-                                        <div class="cntwrap">
-                                            <div>
-                                                <div class="cnt f-brk">
-                                                    <a href="#" class="s-fc7">流年的刻痕Duan</a>
-                                                    ：薛之谦上半年《高尚》1592％，《动物世界》1709％，《暧昧》1798％，网易云音乐飙升纪录，《别》1466％，网易云音乐今年总共三首歌飙升超过1500%，最后强推《我害怕》，歌好听，MV也很好！！！
-                                                </div>
-                                            </div>
-                                            <div class="rp">
-                                                <div class="time s-fc4">
-                                                    昨天11:14
-                                                </div>
-                                                <a href="javascript:;" data-type="like">
-                                                    <i class="zan u-icn2 u-icn2-12"></i>
-                                                    (228)
+                                                    ({{list.likedCount}})
                                                 </a>
                                                 <span class="sep">|</span>
                                                 <a href="javascript:;" class="s-fc3" data-type="reply">回复</a>
@@ -759,131 +242,27 @@
                                     </div>
                                     <br />
                                     <br />
-                                    <h3 class="u-hd4">最新评论(83514)</h3>
-                                    <div id="list4" class="itm">
+                                    <h3 class="u-hd4">最新评论({{comments.total}})</h3>
+                                    <div id="list4" class="itm" v-for="(list,index) in newComments">
                                         <div class="head">
                                             <a href="#">
-                                                <img src="../assets/img/musicTop/1.jpg"/>
+                                                <img :src="list.user.avatarUrl"/>
                                             </a>
                                         </div>
                                         <div class="cntwrap">
                                             <div>
                                                 <div class="cnt f-brk">
-                                                    <a href="#" class="s-fc7">流年的刻痕Duan</a>
-                                                    ：薛之谦上半年《高尚》1592％，《动物世界》1709％，《暧昧》1798％，网易云音乐飙升纪录，《别》1466％，网易云音乐今年总共三首歌飙升超过1500%，最后强推《我害怕》，歌好听，MV也很好！！！
+                                                    <a href="#" class="s-fc7">{{list.user.nickname}}</a>
+                                                    : {{list.content}}
                                                 </div>
                                             </div>
                                             <div class="rp">
                                                 <div class="time s-fc4">
-                                                    昨天11:14
+                                                    {{list.time}}
                                                 </div>
                                                 <a href="javascript:;" data-type="like">
                                                     <i class="zan u-icn2 u-icn2-12"></i>
-                                                    (228)
-                                                </a>
-                                                <span class="sep">|</span>
-                                                <a href="javascript:;" class="s-fc3" data-type="reply">回复</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="list4" class="itm">
-                                        <div class="head">
-                                            <a href="#">
-                                                <img src="../assets/img/musicTop/1.jpg"/>
-                                            </a>
-                                        </div>
-                                        <div class="cntwrap">
-                                            <div>
-                                                <div class="cnt f-brk">
-                                                    <a href="#" class="s-fc7">流年的刻痕Duan</a>
-                                                    ：薛之谦上半年《高尚》1592％，《动物世界》1709％，《暧昧》1798％，网易云音乐飙升纪录，《别》1466％，网易云音乐今年总共三首歌飙升超过1500%，最后强推《我害怕》，歌好听，MV也很好！！！
-                                                </div>
-                                            </div>
-                                            <div class="rp">
-                                                <div class="time s-fc4">
-                                                    昨天11:14
-                                                </div>
-                                                <a href="javascript:;" data-type="like">
-                                                    <i class="zan u-icn2 u-icn2-12"></i>
-                                                    (228)
-                                                </a>
-                                                <span class="sep">|</span>
-                                                <a href="javascript:;" class="s-fc3" data-type="reply">回复</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="list4" class="itm">
-                                        <div class="head">
-                                            <a href="#">
-                                                <img src="../assets/img/musicTop/1.jpg"/>
-                                            </a>
-                                        </div>
-                                        <div class="cntwrap">
-                                            <div>
-                                                <div class="cnt f-brk">
-                                                    <a href="#" class="s-fc7">流年的刻痕Duan</a>
-                                                    ：薛之谦上半年《高尚》1592％，《动物世界》1709％，《暧昧》1798％，网易云音乐飙升纪录，《别》1466％，网易云音乐今年总共三首歌飙升超过1500%，最后强推《我害怕》，歌好听，MV也很好！！！
-                                                </div>
-                                            </div>
-                                            <div class="rp">
-                                                <div class="time s-fc4">
-                                                    昨天11:14
-                                                </div>
-                                                <a href="javascript:;" data-type="like">
-                                                    <i class="zan u-icn2 u-icn2-12"></i>
-                                                    (228)
-                                                </a>
-                                                <span class="sep">|</span>
-                                                <a href="javascript:;" class="s-fc3" data-type="reply">回复</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="list4" class="itm">
-                                        <div class="head">
-                                            <a href="#">
-                                                <img src="../assets/img/musicTop/1.jpg"/>
-                                            </a>
-                                        </div>
-                                        <div class="cntwrap">
-                                            <div>
-                                                <div class="cnt f-brk">
-                                                    <a href="#" class="s-fc7">流年的刻痕Duan</a>
-                                                    ：薛之谦上半年《高尚》1592％，《动物世界》1709％，《暧昧》1798％，网易云音乐飙升纪录，《别》1466％，网易云音乐今年总共三首歌飙升超过1500%，最后强推《我害怕》，歌好听，MV也很好！！！
-                                                </div>
-                                            </div>
-                                            <div class="rp">
-                                                <div class="time s-fc4">
-                                                    昨天11:14
-                                                </div>
-                                                <a href="javascript:;" data-type="like">
-                                                    <i class="zan u-icn2 u-icn2-12"></i>
-                                                    (228)
-                                                </a>
-                                                <span class="sep">|</span>
-                                                <a href="javascript:;" class="s-fc3" data-type="reply">回复</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="list4" class="itm">
-                                        <div class="head">
-                                            <a href="#">
-                                                <img src="../assets/img/musicTop/1.jpg"/>
-                                            </a>
-                                        </div>
-                                        <div class="cntwrap">
-                                            <div>
-                                                <div class="cnt f-brk">
-                                                    <a href="#" class="s-fc7">流年的刻痕Duan</a>
-                                                    ：薛之谦上半年《高尚》1592％，《动物世界》1709％，《暧昧》1798％，网易云音乐飙升纪录，《别》1466％，网易云音乐今年总共三首歌飙升超过1500%，最后强推《我害怕》，歌好听，MV也很好！！！
-                                                </div>
-                                            </div>
-                                            <div class="rp">
-                                                <div class="time s-fc4">
-                                                    昨天11:14
-                                                </div>
-                                                <a href="javascript:;" data-type="like">
-                                                    <i class="zan u-icn2 u-icn2-12"></i>
-                                                    (228)
+                                                    ({{list.likedCount}})
                                                 </a>
                                                 <span class="sep">|</span>
                                                 <a href="javascript:;" class="s-fc3" data-type="reply">回复</a>
@@ -920,29 +299,89 @@
   @import '../assets/css/musicTop.css';
 </style>
 <script>
-import {getAjax} from './../util/ajax'
+// http://localhost:8083/static/img/button.52c2a54.png   assets/img/musicTop/new.jpg
   export default{
     name: "index",
     data:function(){
       return {
+        topList:0,
         features:[
-            {imgUrl:"./../assets/img/musicTop/sheng.jpg",name:"云音乐飙升榜",updateTime:"每天更新",id:3},
-            {imgUrl:"./../assets/img/musicTop/new.jpg",name:"云音乐新歌榜",updateTime:"每天更新",id:0},
-            {imgUrl:"./../assets/img/musicTop/yuan.jpg",name:"网易原创歌曲榜",updateTime:"每周四更新",id:2},
-            {imgUrl:"./../assets/img/musicTop/hot.jpg",name:"云音乐热歌榜",updateTime:"每周四更新",id:1}
-        ]
+            {imgUrl:"static/img/musicTop/sheng.jpg",name:"云音乐飙升榜",updateTime:"每天更新",id:3,index:0},
+            {imgUrl:"static/img/musicTop/new.jpg",name:"云音乐新歌榜",updateTime:"每天更新",id:0,index:1},
+            {imgUrl:"static/img/musicTop/yuan.jpg",name:"网易原创歌曲榜",updateTime:"每周四更新",id:2,index:2},
+            {imgUrl:"static/img/musicTop/hot.jpg",name:"云音乐热歌榜",updateTime:"每周四更新",id:1,index:3}
+        ],
+        global:[
+            {imgUrl:"static/img/musicTop/eleyin.jpg",name:"云音乐电音榜",updateTime:"每周五更新",id:4,index:4},
+            {imgUrl:"static/img/musicTop/beatport.jpg",name:"Beatport全球电子舞曲榜",updateTime:"每周四更新",id:21,index:5},
+            {imgUrl:"static/img/musicTop/Japen.jpg",name:"日本Oricon周榜",updateTime:"每周四更新",id:10,index:6},
+            {imgUrl:"static/img/musicTop/UK.jpg",name:"UK排行榜周榜",updateTime:"每周一更新",id:5,index:7},
+            {imgUrl:"static/img/musicTop/bill.jpg",name:"美国Billboard周榜",updateTime:"每周三更新",id:6,index:8},
+            {imgUrl:"static/img/musicTop/NRG.jpg",name:"法国NRJ Vos Hits 周榜",updateTime:"每周五更新",id:19,index:9},
+            {imgUrl:"static/img/musicTop/iTunes.jpg",name:"iTunes榜",updateTime:"每周一更新",id:8,index:10},
+            {imgUrl:"static/img/musicTop/Hit FM.jpg",name:"Hit FM Top榜",updateTime:"每周一更新",id:9,index:11},
+            {imgUrl:"static/img/musicTop/KTV.jpg",name:"KTV唛榜",updateTime:"每周五更新",id:7,index:12},
+            {imgUrl:"static/img/musicTop/gangao.jpg",name:"中国TOP排行榜(港台榜)",updateTime:"每周一更新",id:14,index:13},
+            {imgUrl:"static/img/musicTop/neidi.jpg",name:"中国TOP排行榜(内地榜)",updateTime:"每周一更新",id:15,index:14},
+            {imgUrl:"static/img/musicTop/xianggang.jpg",name:"香港电台中文歌曲龙虎榜",updateTime:"每周五更新",id:16,index:15},
+            {imgUrl:"static/img/musicTop/xianggang.jpg",name:"中国嘻哈榜",updateTime:"每周五更新",id:18,index:16},
+        ],
+        lists:[],
+        listsongs:[],
+        songsListId:'',
+        comments:[],
+        hotComments:[],
+        newComments:[],
       }
     },
     mounted:function(){
         //加载最新上架歌单
-        var url = "top/album?offset=0&limit=5";
-        getAjax(url,this.$http, function(data){
-            this.album1 = data.body.albums;
-        });
+        var url = "http://localhost:3000/top/list?idx=3";
+        this.$http.get(url).then(function(data){
+            this.lists = data.body.result;
+            this.songsListId = data.body.result.id;
+            this.listsongs = data.body.result.tracks;
+            console.log(this.listsongs);
+            return this.songsListId;
+        }).then(function(songsListId) {
+            //加载评论
+            var url = "http://localhost:3000/comment/playlist?id="+songsListId;
+            this.$http.get(url).then(function(data){
+                this.comments = data.body;
+                this.hotComments = data.body.hotComments;
+                this.newComments = data.body.comments;
+                console.log(this.comments);
+            })
+        })
+
+        // //加载评论
+        // var url = "http://localhost:3000/comment/playlist?id="+this.songsListId;
+        // this.$http.get(url).then(function(data){
+        //     console.log(data.body);
+        // })
     },
     methods:{
-    	
-    }
+    	loadTopList:function(index,id){
+            this.topList = index;
+            var url = "http://localhost:3000/top/list?idx="+id;
+            this.$http.get(url).then(function(data){
+                this.lists = data.body.result;
+                this.songsListId = data.body.result.id;
+                this.listsongs = data.body.result.tracks;
+                console.log(this.listsongs);
+                return this.songsListId;
+            }).then(function(songsListId) {
+                //加载评论
+                var url = "http://localhost:3000/comment/playlist?id="+songsListId;
+                this.$http.get(url).then(function(data){
+                    this.comments = data.body;
+                    this.hotComments = data.body.hotComments;
+                    this.newComments = data.body.comments;
+                    console.log(this.comments);
+                })
+            })
+        }
+    },
   }
 </script>
 
