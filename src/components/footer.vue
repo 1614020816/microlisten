@@ -36,6 +36,102 @@
                 </ul>
             </div>
         </div>
+        <div class="g-btmbar">
+			<div class="m-playbar m-playbar-lock" id="auto-id-play">
+				<div class="updn">
+					<div class="left f-f1">
+						<a href="javascript:;" class="btn" hidefocus="true" data-action="lock"></a>
+					</div>
+					<div class="right f-f1"></div>
+				</div>
+				<div class="bg"></div>
+				<div class="hand" title="展开播放条"></div>
+				<div class="wrap" id="g_play">
+					<div class="btns">
+						<a href="javascript:;" hidefocus = "true" data-action = "prev" class="prv" title="上一首(ctrl+←)">上一首</a>
+						<a href="javascript:;" hidefocus = "true" data-action = "play" class="ply j-flag" title="播放/暂停(p)">播放/暂停</a>
+						<a href="javascript:;" hidefocus = "true" data-action = "next" class="nxt" title="下一首(ctrl+→)">下一首</a>
+					</div>
+					<div class="hend j-flag">
+						<img src="../assets/img/index/6011030069704656.jpg"/>
+						<a href="#" class="mask" hidefocus="true"></a>
+					</div>
+					<div class="play">
+						<div class="j-flag words">
+							<a href="#" class="f-thide name fc1 f-fl" title="情书">情书</a>
+							<span class="by f-thide f-fl">
+								<span title="腰乐队">
+									<a href="#" hidefocus="true">腰乐队</a>
+								</span>
+							</span>
+							<a href="#" class="src" title="来自歌单"></a>
+						</div>
+						<div class="m-pbar" data-action="noop">
+							<div class="barbg j-flag" id="play-bargb">
+								<div class="rdy" style="width: 0%;"></div>
+								<div class="cur" style="width: 0%;">
+									<span class="btn f-tdn f-alpha" id="play-btn">
+										<i></i>
+									</span>
+								</div>
+							</div>
+							<span class="j-flag time">
+								<em>00:00</em>
+								/00:00
+							</span>
+						</div>
+					</div>
+					<div class="oper f-fl">
+						<a href="javascript:;" hidefocus="true" data-action="like" class="icn icn-add j-flag" title="收藏">收藏</a>
+						<a href="javascript:;" hidefocus="true" data-action="share" class="icn icn-share" title="分享">分享</a>
+					</div>
+					<div class="ctrl f-fl f-pr j-flag">
+						<div class="m-vol" style="visibility: hidden;" id="vol-div">
+							<div class="barbg" ></div>
+							<div class="vbg j-t" id="volbg-div">
+								<div class="curr j-t" style="height: 93px;"></div>
+								<span class="btn f-alpha j-t" style="top: 0px;"></span>
+							</div>
+						</div>
+						<a href="javascript:;" hidefocus="true" class="icn icn-vol" data-action="volume"></a>
+						<a href="javascript:;" hidefocus="true" class="icn icn-shuffle" data-action="mode" title="循环"></a>
+						<span class="add f-pr">
+							<span class="tip" style="display: none;">已添加到播放列表</span>
+							<a href="javascript:;" hidefocus="true" title="播放列表" data-action="panel" class="icn icn-list s-fc3">132</a>
+						</span>
+						<div class="tip tip-1" style="display: none;">
+							循环
+						</div>
+					</div>
+				</div>
+			<!--<div class="list" id="g_playlist">
+					<div class="listhd">
+						<div class="listhdc">
+							<h4>
+								播放列表(
+								<span class="j-flag">132</span>
+								)
+							</h4>
+							<a href="javascript:;" class="addall" data-action="likeall">
+								<span class="ico ico-add"></span>
+								收藏全部
+							</a>
+							<span class="line"></span>
+							<a href="javascipt:;" class="clear" data-action = "clear">
+								<span class="ico ico-del"></span>
+								清除
+							</a>
+							<p class="lytit f-ff0 f-thide j-flag">情书</p>
+							<span class="close" data-action = "close">关闭</span>
+						</div>
+					</div>
+					<div class="listbd">
+						<img src="../assets/img/index/picture.png" class="imgbg j-flag" id="list-img" style="top: -360px;"/>
+						<div class="msk"></div>
+					</div>
+				</div>-->
+			</div>
+		</div>
     </div>
 </template>
 <script>
